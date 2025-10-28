@@ -7,4 +7,4 @@ const sanitizeString = (str) => {
     .trim(); // Remove leading/trailing whitespace
 };
 
-module.exports = { sanitizeString };
+export { sanitizeString };
