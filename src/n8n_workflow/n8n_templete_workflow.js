@@ -1,3 +1,5 @@
+const { sanitizeString } = require("../utils/sanitizeString");
+
 function generateUUID() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
     (
@@ -11,7 +13,7 @@ export const getVehicleByPhone = (id, name) => {
   const webHookId = generateUUID();
   return {
     workflow: {
-      name: `Get Vehicle by Phone(${name})`,
+      name: `Get Vehicle by Phone (${sanitizeString(name)})`,
       nodes: [
         {
           parameters: {
@@ -513,7 +515,7 @@ export const suggestApptSlots = (id, name) => {
 
   return {
     workflow: {
-      name: `Suggest Appt Slots(${name})`,
+      name: `Suggest Appt Slots (${sanitizeString(name)})`,
       nodes: [
         {
           parameters: {
@@ -748,7 +750,7 @@ export const bookAppt = (id, name) => {
 
   return {
     workflow: {
-      name: `Book Appt(${name})`,
+      name: `Book Appt (${sanitizeString(name)})`,
       nodes: [
         {
           parameters: {

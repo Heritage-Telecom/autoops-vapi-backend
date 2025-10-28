@@ -1,5 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
+const { sanitizeString } = require("../utils/sanitizeString");
 
 const AUTOOPS_BASE_URL = process.env.AUTOOPS_BASE_URL;
 const AUTOOPS_API_KEY = process.env.AUTOOPS_API_KEY;
@@ -15,7 +16,8 @@ const getClients = async () => {
     res = await axios.get(`${AUTOOPS_BASE_URL}/clients`, { headers });
     const clients = res.data.data.map((client) => ({
       id: client.id,
-      name: client.name,
+      name: sanitizeString(client.name),
+      rawName: client.name // Keep original name for reference if needed
     }));
     return clients;
   } catch (error) {
